@@ -1,0 +1,22 @@
+# Secrets
+config.py
+.env
+
+# Python Compiled files
+__pycache__/
+*.py[cod]
+
+
+ml_models/*.joblib
+*.joblib
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# IDE settings (Optional)
+.idea/
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
