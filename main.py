@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from starlette.middleware.cors import CORSMiddleware
 from tornado import concurrent
 from services.reccobeats import get_track_features
 from schemas import SongFeatures
@@ -7,6 +8,22 @@ from utils.count_percentage_emotion import calculate_emotion_stats
 from services.trained_model_evaluation import get_prediction
 
 app = FastAPI(swagger_ui_parameters={"syntaxHighlight": False})
+
+origins = [
+    '*',
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:4200"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["Content-Disposition"]
+)
 
 @app.get('/analyze/playlist')
 def get_playlist_analysis(url: str):
